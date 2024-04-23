@@ -157,7 +157,7 @@ open class LocationPickerViewController: UIViewController {
 		searchBar.delegate = self
 		
 		// gesture recognizer for adding by tap
-        let locationSelectGesture = UILongPressGestureRecognizer(
+        let locationSelectGesture =  UITapGestureRecognizer(
             target: self, action: #selector(addLocation(_:)))
         locationSelectGesture.delegate = self
 		mapView.addGestureRecognizer(locationSelectGesture)
@@ -359,7 +359,7 @@ extension LocationPickerViewController: UISearchResultsUpdating {
 
 extension LocationPickerViewController {
     @objc func addLocation(_ gestureRecognizer: UIGestureRecognizer) {
-		if gestureRecognizer.state == .began {
+	
 			let point = gestureRecognizer.location(in: mapView)
 			let coordinates = mapView.convert(point, toCoordinateFrom: mapView)
 			let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
@@ -367,7 +367,7 @@ extension LocationPickerViewController {
 			// clean location, cleans out old annotation too
 			self.location = nil
             selectLocation(location: location)
-		}
+		
 	}
 }
 
