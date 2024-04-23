@@ -247,8 +247,11 @@ open class LocationPickerViewController: UIViewController {
 	func updateAnnotation() {
 		mapView.removeAnnotations(mapView.annotations)
 		if let location = location {
-			mapView.addAnnotation(location)
-			mapView.selectAnnotation(location, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.mapView.addAnnotation(location)
+                self.mapView.selectAnnotation(location, animated: true)
+            })
+			
 		}
 	}
 	
